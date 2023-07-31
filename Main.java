@@ -3,26 +3,42 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Give a name to the hedgehog:");
-        String hedgehogName = sc.nextLine();
-        Hedgehog hedgehog = new Hedgehog(hedgehogName);
-        hedgehog.speak1();
-
+        Zoo zoo = new Zoo();
         while (true) {
-            System.out.println("What should the hedgehog say?");
-            String input = sc.nextLine();
+            System.out.println("1) Add a hedgehog, 2) Let them speak, 3) List hedgehogs, 0) Exit");
+            int option = sc.nextInt();
+            sc.nextLine();
 
-            if (input.equals("exit")) {
-                break;
+            switch (option) {
+                case 1:
+                    System.out.println("Give a name to the hedgehog:");
+                    String name = sc.nextLine();
+                    Hedgehog hedgehog = new Hedgehog(name);
+                    zoo.addAHedgehog(hedgehog);
+                    hedgehog.speak1();
+                    break;
 
-            } else {
-                try {
-                    int number = Integer.parseInt(input);
-                    hedgehog.speak2(number);
+                case 2:
+                    System.out.println("What should hedgehogs say?");
+                    String say = sc.nextLine();
+                    try {
+                        int number = Integer.parseInt(say);
+                        zoo.hedgehogSpeak2(number);
+                    } catch (NumberFormatException e) {
+                        zoo.hedgehogSpeak1(say);
+                    }
+                    break;
 
-                } catch (NumberFormatException e) {
-                    hedgehog.speak3(input);
-                }
+                case 3:
+                    zoo.hedgehogList();
+                    break;
+
+
+                case 0:
+                    System.exit(0);
+                default:
+                    System.out.println("");
+                    break;
             }
         }
     }
