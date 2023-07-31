@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Zoo zoo = new Zoo();
         while (true) {
-            System.out.println("1) Add a hedgehog, 2) Let them speak, 3) List hedgehogs, 0) Exit");
+            System.out.println("1) Add a hedgehog, 2) Let them speak, 3) List animals, 0) Exit");
             int option = sc.nextInt();
             sc.nextLine();
 
@@ -33,11 +33,10 @@ public class Main {
                     zoo.hedgehogList();
                     break;
 
-
                 case 0:
                     System.exit(0);
                 default:
-                    System.out.println("");
+                    System.out.println("Invalid choice. Try again.");
                     break;
             }
         }
